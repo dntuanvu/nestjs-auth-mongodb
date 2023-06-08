@@ -8,7 +8,8 @@ $ npm start
 $ npm run start:dev
 ```
 
-```docker (to have a ready running application with database attached)
+```bash
+# docker (to have a ready running application with database attached)
 docker-compose build
 
 docker-compose up
