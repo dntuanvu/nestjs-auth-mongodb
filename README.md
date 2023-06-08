@@ -29,7 +29,7 @@ $ npm run test:cov
 ```
 
 # API Testing with Postman
-## register new user
+## Register new user
 POST localhost:8080/auth/register
 
 sample request body (JSON raw)
@@ -48,7 +48,7 @@ sample request body (JSON raw)
 }
 ```
 
-## login 
+## Login 
 POST localhost:8080/auth/login
 
 sample request body (x-www-form-urlencoded)
@@ -60,8 +60,16 @@ password=P@ssword123
 ## Return success and a JWT token if username and password are correct
 ```bash
 {
-    "statusCode": 400,
-    "message": "user already exists"
+    "user": {
+        "_id": "6481c8b1284f8bc6cc49258c",
+        "email": "dntuanvu@gmail.com",
+        "attempt": 3,
+        "isDeleted": true,
+        "updatedAt": 1686227331306,
+        "createdAt": 1686227121872,
+        "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRudHVhbnZ1QGdtYWlsLmNvbSIsImlhdCI6MTY4NjIzMDM4NCwiZXhwIjoxNjg2ODM1MTg0fQ.sLJPwUdiyWV0P9W_7WasnEroTLAok9-gGNm3ShwSAS8"
 }
 ```
 
