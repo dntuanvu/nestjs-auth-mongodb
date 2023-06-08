@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  backend-dev:
+    container_name: nestjs_api_dev
+    image: nestjs-api-dev:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: npm start
+    ports:
+      - 8080:3000
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/nestjs-app
+      - SERVER_PORT=3000
+      - SECRET_KEY=c2NhbGVkYXducGx1c3N1Y2Nlc3NmdWx1bmRlcmxpbmVlcXVhdG9yYWJvYXJkdm93ZWxzYXRncmVhdGx5bmFtZWRpc2N1c3Npb25zdXJmYWNlcGxlYXN1cmVkdWViYWxsb29uc3VpdGJlaW5nbG9zdHNjYWxlZGVzY3JpYmVwcm9taXNlZGdhc2JldHdlZW5kcml2ZWZvZ2xvd2VyZ2VudGxlYXBhcnRtZW50dXB3YXJkbGVhcm5nbG9iZWRhbmdlcnN1Y2Nlc3NmdWx0b29yZWFjaGFsaWtlZ3JheWZpZWxka25ld3Jvd2dyYXNzc2ltcGxlc3R0ZWxsYWx0aG91Zw==
+    networks:
+      - nestjs-network
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - ./databases:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - nestjs-network
+    restart: always
+
+networks:
+  nestjs-network:
+    driver: bridge
