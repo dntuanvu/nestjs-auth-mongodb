@@ -28,6 +28,53 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## API Testing with Postman
+# register new user
+POST localhost:8080/auth/register
+
+sample request body (JSON raw)
+{
+    "email": "dntuanvu1@gmail.com",
+    "password": "P@ssw0rd123"
+}
+
+# if user already exists 
+{
+    "statusCode": 400,
+    "message": "user already exists"
+}
+
+# login 
+POST localhost:8080/auth/login
+
+sample request body (x-www-form-urlencoded)
+email=dntuanvu@gmail.com
+password=P@ssword123
+
+# Return success and a JWT token if username and password are correct
+{
+    "statusCode": 400,
+    "message": "user already exists"
+}
+
+# Return fail if username and password are not matched
+{
+    "statusCode": 400,
+    "message": "invalid credentials"
+}
+
+# A user has a maximum of 3 attempts within 5 minutes, otherwise, the user will be locked.
+{
+    "statusCode": 400,
+    "message": "has reached maximum of 3 attempts within 5 minutes"
+}
+
+# Return fail if a user is locked
+{
+    "statusCode": 400,
+    "message": "user is locked"
+}
+
 ## Stay in touch
 
 - Author - [DINH NGOC TUAN VU](dntuanvu@gmail.com)
